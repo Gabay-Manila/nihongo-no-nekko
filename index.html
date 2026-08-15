@@ -9,28 +9,36 @@
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Spectral:ital,wght@0,500;0,600;1,500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#F3F1EA;
-    --ink-panel:#FFFFFF;
-    --ink-panel-2:#ECE9DE;
-    --hairline:#DEDACD;
-    --brass:#33322C;
-    --brass-bright:#17160F;
-    --brass-dim:#A8A395;
-    --text:#2B2A24;
-    --text-mute:#837E6E;
+    /* Yoshida EdTech Works 共通ブランドトークン(yew-color-tokens.css準拠) */
+    --brand-ink:#2B2926;
+    --brand-cream:#EFEAE0;
+    --brand-cream-deep:#E4DECE;
+    --brand-stone:#C9C2B4;
+    --brand-stone-line:#DDD6C6;
+    --brand-accent-fill:#E08A34;  /* マンゴー(学習系) */
+    --brand-accent-text:#A85F1D;
+    --brand-logo-mark:#9C7A2E;    /* 「活」ロゴマーク専用・装飾のみ */
+
+    /* このファイル内で使う内部変数(上のブランドトークンにマッピング) */
+    --ink:var(--brand-cream);
+    --ink-panel:var(--brand-cream);
+    --ink-panel-2:var(--brand-cream-deep);
+    --hairline:var(--brand-stone-line);
+    --brass:var(--brand-accent-fill);
+    --brass-bright:var(--brand-accent-text);
+    --brass-dim:var(--brand-stone);
+    --text:var(--brand-ink);
+    --text-mute:#7A7566;
     --good:#5F7F5F;
     --good-bg:#E7EEE3;
     --bad:#B15D42;
     --bad-bg:#F6E7DF;
-    --on-accent:#F7F5EE;
+    --on-accent:var(--brand-cream);
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
   body{
-    background:
-      radial-gradient(1200px 800px at 15% -10%, rgba(51,50,44,.03), transparent 60%),
-      radial-gradient(900px 700px at 110% 10%, rgba(51,50,44,.02), transparent 60%),
-      var(--ink);
+    background:var(--ink);
     color:var(--text);
     font-family:'Zen Kaku Gothic New', sans-serif;
     min-height:100vh;
@@ -48,7 +56,7 @@
     border-bottom:1px solid var(--hairline);
   }
   .brand{ display:flex; align-items:baseline; gap:10px; min-width:0; }
-  .brand .mark{ color:var(--brass); font-size:20px; letter-spacing:.14em; flex-shrink:0; }
+  .brand .mark{ color:var(--brand-logo-mark); font-size:20px; letter-spacing:.14em; flex-shrink:0; }
   .brand .name{ font-family:'Shippori Mincho', serif; font-size:15px; letter-spacing:.02em; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .brand .sub{ font-size:9px; color:var(--text-mute); letter-spacing:.12em; white-space:nowrap; }
   .header-actions{ display:flex; align-items:center; gap:6px; flex-shrink:0; }
@@ -62,13 +70,13 @@
   .lang-toggle button.active{ background:var(--brass); color:var(--on-accent); }
 
   .icon-btn{
-    background:none;border:1px solid var(--hairline); color:var(--brass);
+    background:none;border:1px solid var(--hairline); color:var(--brass-bright);
     font-size:14px; width:32px; height:32px; border-radius:50%; cursor:pointer;
     display:flex; align-items:center; justify-content:center; flex-shrink:0;
   }
   .icon-btn:hover{ border-color:var(--brass-dim); }
   .back-btn{
-    background:none;border:1px solid var(--hairline); color:var(--brass);
+    background:none;border:1px solid var(--hairline); color:var(--brass-bright);
     font-family:'Zen Kaku Gothic New',sans-serif; font-size:12px; letter-spacing:.05em;
     padding:7px 12px; border-radius:3px; cursor:pointer; flex-shrink:0;
   }
@@ -86,7 +94,7 @@
   }
   .stage-pill:hover{ border-color:var(--brass-dim); }
   .stage-pill.active{ border-color:var(--brass); background:linear-gradient(135deg,var(--ink-panel),var(--ink-panel-2)); }
-  .stage-pill .sp-code{ font-family:'Spectral',serif; font-size:17px; color:var(--brass); }
+  .stage-pill .sp-code{ font-family:'Spectral',serif; font-size:17px; color:var(--brass-bright); }
   .stage-pill.active .sp-code{ color:var(--brass-bright); }
   .stage-pill .sp-name{ font-size:10px; color:var(--text-mute); margin-top:2px; letter-spacing:.02em; }
   .stage-pill.disabled{ opacity:.45; cursor:not-allowed; }
@@ -96,7 +104,7 @@
   }
 
   .hero{ margin-bottom:22px; }
-  .hero .eyebrow{ color:var(--brass); font-size:11px; letter-spacing:.2em; margin-bottom:6px; }
+  .hero .eyebrow{ color:var(--brass-bright); font-size:11px; letter-spacing:.2em; margin-bottom:6px; }
   .hero h1{ font-family:'Shippori Mincho', serif; font-size:23px; margin:0 0 8px; line-height:1.45; }
   .hero p{ color:var(--text-mute); font-size:13px; line-height:1.8; margin:0; }
 
@@ -108,7 +116,7 @@
   .weak-cta:hover{ border-color:var(--brass); }
   .weak-cta .wl-title{ font-size:14px; color:var(--brass-bright); font-weight:700; }
   .weak-cta .wl-sub{ font-size:11px; color:var(--text-mute); margin-top:3px; }
-  .weak-cta .wl-count{ font-family:'Spectral',serif; font-size:26px; color:var(--brass); }
+  .weak-cta .wl-count{ font-family:'Spectral',serif; font-size:26px; color:var(--brass-bright); }
 
   .unit-list{ display:flex; flex-direction:column; gap:10px; }
   .unit-row{
@@ -123,13 +131,13 @@
   .unit-seal{
     width:42px; height:42px; border-radius:50%; border:1.5px solid var(--brass-dim);
     display:flex; align-items:center; justify-content:center;
-    font-family:'Spectral',serif; font-size:15px; color:var(--brass); flex-shrink:0;
+    font-family:'Spectral',serif; font-size:15px; color:var(--brass-bright); flex-shrink:0;
   }
-  .unit-seal.mastered{ border-color:var(--brass); background:rgba(51,50,44,.08); color:var(--brass-bright); }
+  .unit-seal.mastered{ border-color:var(--brass); background:rgba(224,138,52,.12); color:var(--brass-bright); }
   .unit-body{ flex:1; min-width:0; }
   .unit-theme{ font-size:14px; font-weight:700; color:var(--text); }
   .unit-particle{
-    display:inline-block; font-family:'Spectral',serif; font-size:10.5px; color:var(--brass);
+    display:inline-block; font-family:'Spectral',serif; font-size:10.5px; color:var(--brass-bright);
     border:1px solid var(--brass-dim); border-radius:3px; padding:1px 6px; margin-top:4px;
   }
   .unit-desc{ font-size:11px; color:var(--text-mute); margin-top:4px; line-height:1.5; }
@@ -143,7 +151,7 @@
   .dot.now{ background:var(--brass); }
   .dot.wrong{ background:var(--bad); }
 
-  .step-label{ color:var(--brass); font-size:11px; letter-spacing:.2em; margin-bottom:10px; }
+  .step-label{ color:var(--brass-bright); font-size:11px; letter-spacing:.2em; margin-bottom:10px; }
   .q-unit-tag{ color:var(--text-mute); font-size:11px; margin-bottom:2px; }
 
   .listen-stage{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:26px; padding:30px 0 10px; }
@@ -154,7 +162,7 @@
     display:flex; align-items:center; justify-content:center; cursor:pointer; position:relative;
   }
   .speaker-btn.playing{ animation:pulse 1.1s ease-in-out infinite; }
-  @keyframes pulse{ 0%{box-shadow:0 0 0 0 rgba(51,50,44,.22);} 70%{box-shadow:0 0 0 18px rgba(51,50,44,0);} 100%{box-shadow:0 0 0 0 rgba(51,50,44,0);} }
+  @keyframes pulse{ 0%{box-shadow:0 0 0 0 rgba(224,138,52,.28);} 70%{box-shadow:0 0 0 18px rgba(224,138,52,0);} 100%{box-shadow:0 0 0 0 rgba(224,138,52,0);} }
   .listen-hint{ color:var(--text-mute); font-size:12px; text-align:center; letter-spacing:.03em; }
   .listen-count{ font-size:11px; color:var(--brass-dim); }
 
@@ -170,7 +178,7 @@
     font-family:'Zen Kaku Gothic New',sans-serif; font-size:13px; padding:11px 18px;
     border-radius:5px; cursor:pointer; width:100%;
   }
-  .ghost-btn:hover{ border-color:var(--brass-dim); color:var(--brass); }
+  .ghost-btn:hover{ border-color:var(--brass-dim); color:var(--brass-bright); }
 
   .blank-sentence{
     font-family:'Zen Kaku Gothic New',sans-serif; font-size:21px; line-height:2;
@@ -225,12 +233,26 @@
   .reveal-romaji{ font-family:'Spectral',serif; font-style:italic; font-size:13px; color:var(--brass-dim); margin-bottom:12px; }
   .reveal-meaning{ font-size:13px; color:var(--text-mute); margin-bottom:14px; }
   .reveal-tip{ border-top:1px solid var(--hairline); padding-top:12px; font-size:12.5px; line-height:1.8; color:var(--text); }
-  .reveal-tip b{ color:var(--brass); }
+  .reveal-tip b{ color:var(--brass-bright); }
   .reveal-tip .tip-lang-note{ font-size:10px; color:var(--text-mute); display:block; margin-top:6px; }
+  .speak-check{ border-top:1px solid var(--hairline); margin-top:14px; padding-top:16px; text-align:center; }
+  .mic-btn{
+    width:64px; height:64px; border-radius:50%; border:1.5px solid var(--brass);
+    background:var(--ink-panel-2); color:var(--brass-bright); font-size:26px; cursor:pointer;
+    display:inline-flex; align-items:center; justify-content:center; transition:background .15s,border-color .15s;
+  }
+  .mic-btn:hover{ border-color:var(--brass-bright); }
+  .mic-btn.recording{ background:var(--brass); color:var(--on-accent); animation:pulse 1.2s infinite; }
+  .mic-btn:disabled{ opacity:.35; cursor:not-allowed; }
+  .speak-status{ font-size:12px; color:var(--text-mute); margin-top:10px; min-height:16px; }
+  .speak-result{ margin-top:12px; padding:12px 14px; border-radius:6px; font-size:13px; line-height:1.7; text-align:left; }
+  .speak-result.ok{ background:var(--good-bg); color:var(--good); }
+  .speak-result.ng{ background:var(--bad-bg); color:var(--bad); }
+  .speak-result .heard{ font-weight:700; font-size:15px; display:block; margin-bottom:4px; color:var(--text); }
   .replay-row{ display:flex; gap:10px; margin-bottom:8px; }
   .replay-row .speaker-mini{
     width:44px; height:44px; border-radius:50%; border:1px solid var(--brass-dim);
-    background:var(--ink-panel-2); color:var(--brass); font-size:16px; flex-shrink:0;
+    background:var(--ink-panel-2); color:var(--brass-bright); font-size:16px; flex-shrink:0;
     display:flex; align-items:center; justify-content:center; cursor:pointer;
   }
 
@@ -238,10 +260,10 @@
   .complete-seal{
     width:90px; height:90px; border-radius:50%; border:2px solid var(--brass);
     display:flex; align-items:center; justify-content:center; font-family:'Shippori Mincho',serif;
-    font-size:15px; color:var(--brass-bright); margin-bottom:18px; box-shadow:0 0 0 5px rgba(51,50,44,.06);
+    font-size:15px; color:var(--brass-bright); margin-bottom:18px; box-shadow:0 0 0 5px rgba(224,138,52,.10);
   }
   .complete-title{ font-family:'Shippori Mincho',serif; font-size:19px; margin-bottom:6px; }
-  .complete-score{ font-family:'Spectral',serif; font-size:36px; color:var(--brass); margin:10px 0 4px; }
+  .complete-score{ font-family:'Spectral',serif; font-size:36px; color:var(--brass-bright); margin:10px 0 4px; }
   .complete-meta{ font-size:12px; color:var(--text-mute); margin-bottom:26px; }
   .complete-actions{ display:flex; flex-direction:column; gap:10px; width:100%; max-width:280px; }
 
@@ -258,10 +280,10 @@
   .modal-title .close-x{ cursor:pointer; color:var(--text-mute); font-size:18px; }
   .setting-row{ margin-bottom:20px; }
   .setting-label{ font-size:12px; color:var(--text-mute); margin-bottom:8px; display:flex; justify-content:space-between; }
-  .setting-label span.val{ color:var(--brass); font-family:'Spectral',serif; }
+  .setting-label span.val{ color:var(--brass-bright); font-family:'Spectral',serif; }
   input[type=range]{ -webkit-appearance:none; width:100%; height:4px; border-radius:2px; background:var(--hairline); outline:none; }
   input[type=range]::-webkit-slider-thumb{
-    -webkit-appearance:none; width:18px; height:18px; border-radius:50%; background:var(--brass); cursor:pointer; border:2px solid var(--ink);
+    -webkit-appearance:none; width:18px; height:18px; border-radius:50%; background:var(--brass); cursor:pointer; border:2px solid var(--text);
   }
   select.voice-select{
     width:100%; background:var(--ink-panel-2); color:var(--text); border:1px solid var(--hairline);
@@ -364,6 +386,11 @@
         <div class="reveal-romaji romaji" id="revealRomaji"></div>
         <div class="reveal-meaning" id="revealMeaning"></div>
         <div class="reveal-tip" id="revealTip"></div>
+        <div class="speak-check" id="speakCheck">
+          <button class="mic-btn" id="micBtn">🎤</button>
+          <div class="speak-status" id="speakStatus"></div>
+          <div class="speak-result" id="speakResult" style="display:none;"></div>
+        </div>
       </div>
       <button class="primary-btn" id="nextQBtn"></button>
     </div>
@@ -493,6 +520,13 @@ const STR = {
     testVoiceBtn: "▶ I-test",
     voiceWarn: "Kung wala kang makitang Japanese voice, karaniwang dahil ito sa browser o device mo — subukan sa Chrome sa Android/Windows.",
     comingSoon: "Malapit na",
+    micTapToSpeak: "I-tap para magsalita",
+    micListening: "Nakikinig...",
+    micNoSupport: "Hindi supported ang speech recognition sa browser/device na ito.",
+    micNoMatch: "Walang narinig, subukan ulit.",
+    micHeard: h => `Narinig: ${h}`,
+    micOk: "Magaling! Malapit na malapit sa tamang bigkas.",
+    micRetry: "Subukan ulit",
   },
   en: {
     brandName: "Nihongo no Nekko",
@@ -527,6 +561,13 @@ const STR = {
     testVoiceBtn: "▶ Test",
     voiceWarn: "If no Japanese voice shows up, it's usually a browser/device limitation — try Chrome on Android or Windows.",
     comingSoon: "Coming Soon",
+    micTapToSpeak: "Tap to speak",
+    micListening: "Listening...",
+    micNoSupport: "Speech recognition isn't supported on this browser/device.",
+    micNoMatch: "Didn't catch that, try again.",
+    micHeard: h => `We heard: ${h}`,
+    micOk: "Nice! Very close to the correct pronunciation.",
+    micRetry: "Try again",
   }
 };
 
@@ -1020,9 +1061,88 @@ function setupStep4(){
   document.getElementById('revealMeaning').textContent = currentLang === 'tl' ? q.tl_meaning : q.en_meaning;
   document.getElementById('revealTip').innerHTML = `<b>${T('tipPrefix')}</b>${q.tip_tl || ''}<span class="tip-lang-note">${T('tipLangNote')}</span>`;
   document.getElementById('replayBtn').onclick = () => speak(q.target_ja, null, q.id);
+  setupSpeechCheck(q);
   document.getElementById('nextQBtn').onclick = () => {
     document.getElementById('step4').style.display = 'none';
     advanceQuestion(q);
+  };
+}
+
+/* --- Speech recognition: pronunciation check --- */
+const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+function normalizeJa(s){
+  return (s || '')
+    .replace(/[\s、。！？!?・「」『』"'.,]/g, '')
+    .replace(/[Ａ-Ｚａ-ｚ０-９]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0xFEE0))
+    .toLowerCase();
+}
+function levenshtein(a, b){
+  const m = a.length, n = b.length;
+  if(m === 0) return n;
+  if(n === 0) return m;
+  const dp = Array.from({length: m + 1}, () => new Array(n + 1).fill(0));
+  for(let i = 0; i <= m; i++) dp[i][0] = i;
+  for(let j = 0; j <= n; j++) dp[0][j] = j;
+  for(let i = 1; i <= m; i++){
+    for(let j = 1; j <= n; j++){
+      dp[i][j] = a[i-1] === b[j-1]
+        ? dp[i-1][j-1]
+        : 1 + Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]);
+    }
+  }
+  return dp[m][n];
+}
+function similarity(a, b){
+  const dist = levenshtein(a, b);
+  const maxLen = Math.max(a.length, b.length) || 1;
+  return 1 - (dist / maxLen);
+}
+
+function setupSpeechCheck(q){
+  const micBtn = document.getElementById('micBtn');
+  const statusEl = document.getElementById('speakStatus');
+  const resultEl = document.getElementById('speakResult');
+  resultEl.style.display = 'none';
+  resultEl.className = 'speak-result';
+  statusEl.textContent = '';
+
+  if(!SpeechRecognitionAPI){
+    micBtn.disabled = true;
+    statusEl.textContent = T('micNoSupport');
+    return;
+  }
+  statusEl.textContent = T('micTapToSpeak');
+
+  micBtn.onclick = () => {
+    const recognition = new SpeechRecognitionAPI();
+    recognition.lang = 'ja-JP';
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    micBtn.classList.add('recording');
+    micBtn.disabled = true;
+    statusEl.textContent = T('micListening');
+    resultEl.style.display = 'none';
+
+    recognition.onresult = (event) => {
+      const heard = event.results[0][0].transcript;
+      const score = similarity(normalizeJa(heard), normalizeJa(q.target_ja));
+      resultEl.style.display = 'block';
+      resultEl.className = 'speak-result ' + (score >= 0.7 ? 'ok' : 'ng');
+      resultEl.innerHTML = `<span class="heard">${heard}</span>${score >= 0.7 ? T('micOk') : T('micRetry')}`;
+    };
+    recognition.onerror = () => {
+      resultEl.style.display = 'block';
+      resultEl.className = 'speak-result ng';
+      resultEl.innerHTML = T('micNoMatch');
+    };
+    recognition.onend = () => {
+      micBtn.classList.remove('recording');
+      micBtn.disabled = false;
+      statusEl.textContent = T('micTapToSpeak');
+    };
+    recognition.start();
   };
 }
 
